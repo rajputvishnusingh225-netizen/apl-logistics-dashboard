@@ -56,4 +56,4 @@ if len(numeric_cols) > 0:
         numeric_cols
     )
 
-    st.bar_chart(df[selected_col].head(50))v
+    st.bar_chart(df[selected_col].head(50))
