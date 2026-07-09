@@ -1,12 +1,18 @@
 import streamlit as st
 import pandas as pd
+import zipfile
 
-st.set_page_config(page_title="APL Logistics Dashboard", layout="wide")
+# Page Config
+st.set_page_config(
+    page_title="APL Logistics Dashboard",
+    layout="wide"
+)
 
 st.title("📦 APL Logistics Dashboard")
 
-# Load Data
-df = pd.read_csv("APL_Logistics.csv", encoding="latin1")
+# Load Data from ZIP file
+with zipfile.ZipFile("APL_Logistics.zip") as z:
+    df = pd.read_csv(z.open("APL_Logistics.csv"), encoding="latin1")
 
 # KPI Cards
 col1, col2, col3 = st.columns(3)
@@ -50,4 +56,4 @@ if len(numeric_cols) > 0:
         numeric_cols
     )
 
-    st.bar_chart(df[selected_col].head(50))
+    st.bar_chart(df[selected_col].head(50))v
